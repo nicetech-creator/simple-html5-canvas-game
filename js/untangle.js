@@ -8,4 +8,5 @@ $(document).ready(function(){
     var width = canvas.width;
     var height = canvas.height;
     untangleGame.createRandomCircles(width, height);
+    untangleGame.connectCircles();
 });

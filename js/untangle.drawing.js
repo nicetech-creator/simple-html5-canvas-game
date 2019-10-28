@@ -9,3 +9,32 @@ untangleGame.drawCircle = function(x, y, radius) {
     ctx.closePath();
     ctx.fill();
 };
+
+untangleGame.thinLineThickness = 1;
+untangleGame.lines = [];
+
+untangleGame.drawLine = function(x1, y1, x2, y2, thickness) {
+    var ctx = untangleGame.ctx;
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    //ctx.closePath();
+    ctx.lineWidth = thickness;
+    ctx.strokeStyle = "#cfc";
+    ctx.stroke();
+    
+}
+
+untangleGame.connectCircles = function() {
+    // connect the circles to each other with lines
+    untangleGame.lines.length = 0;
+    for (var i=0;i< untangleGame.circles.length;i++)
+    {
+        var startPoint = untangleGame.circles[i];
+        for(var j=0;j<i;j++) {
+            var endPoint = untangleGame.circles[j];
+            untangleGame.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, 1);
+            untangleGame.lines.push(new untangleGame.Line(startPoint, endPoint, untangleGame.thinLineThickness));
+        }
+    }
+};
