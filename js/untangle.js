@@ -9,4 +9,14 @@ $(document).ready(function(){
     var height = canvas.height;
     untangleGame.createRandomCircles(width, height);
     untangleGame.connectCircles();
+    untangleGame.handleInput();
+
+    setInterval(gameloop, 30);
+    
+    function gameloop() {
+        // clear the Canvas before redrawing.
+        untangleGame.clear();
+        untangleGame.drawAllLines();
+        untangleGame.drawAllCircles();
+    }
 });
